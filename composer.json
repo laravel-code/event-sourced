@@ -1,0 +1,39 @@
+{
+    "name": "laravel-code/event-sourcing",
+    "description": "Event sourcing for laravel",
+    "type": "library",
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "laravel/framework": "^8.75",
+        "phpunit/phpunit": "^9.5",
+        "orchestra/testbench": "^6.23"
+    },
+    "license": "MIT",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelCode\\EventSourcing\\ServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelCode\\EventSouring\\": "src"
+
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TestApp\\": "tests\\TestApp",
+            "Tests\\": "tests\\Integration"
+        }
+    },
+    "scripts": {
+        "fix": [
+            "php-cs-fixer fix"
+        ],
+        "test": [
+            "phpunit"
+        ]
+    }
+}
