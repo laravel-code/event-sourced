@@ -7,7 +7,7 @@ use LaravelCode\EventSouring\Models\Event;
 
 class StoreEventListener extends \LaravelCode\EventSouring\Listener
 {
-    public function apply(ShouldStore $event)
+    public function apply(ShouldStore $event): void
     {
         $entity = new Event();
         $entity->id = $event->getEventId();

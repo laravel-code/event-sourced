@@ -4,5 +4,5 @@ namespace LaravelCode\EventSouring\Inflector;
 
 interface Inflector
 {
-    public function execute($eventName): string;
+    public function execute(string $eventName): string;
 }

@@ -33,7 +33,7 @@ class InMemoryInstanceOfLocator implements Locator
     /**
      * @throws ReflectionException
      */
-    private function shouldHandle($eventName, $listenEvent): bool
+    private function shouldHandle(string $eventName, string $listenEvent): bool
     {
         if (!class_exists($eventName)) {
             return false;
@@ -47,7 +47,7 @@ class InMemoryInstanceOfLocator implements Locator
     /**
      * @throws ReflectionException
      */
-    private function getParents(string $className, string $class)
+    private function getParents(string $className, string $class): void
     {
         if (isset($this->parentMap[$className])) {
             return;

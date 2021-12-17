@@ -8,6 +8,9 @@ use LaravelCode\EventSouring\Contracts\Event\Event;
 use LaravelCode\EventSouring\Error\MethodNotImplemented;
 use LaravelCode\EventSouring\Inflector\ApplyClassNameInflector;
 
+/**
+ * @property int $version
+ */
 trait EventRecorder
 {
     private array $_eventStack = [];
@@ -37,7 +40,7 @@ trait EventRecorder
         return $this->_eventStack;
     }
 
-    public function publishEvents(?string $commandId = null, ?string $authorId = null)
+    public function publishEvents(?string $commandId = null, ?string $authorId = null): void
     {
         foreach ($this->getUnpublishedEvents() as $event) {
             if ($event instanceof Event) {

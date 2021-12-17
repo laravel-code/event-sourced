@@ -19,7 +19,7 @@ class StoreEventListener extends EventListener implements Handler
         parent::__construct($locator, new ApplyInflector());
     }
 
-    public function handle($eventName, $events)
+    public function handle(string $eventName, array $events): void
     {
         $handler = $this->locator->execute($eventName, $events);
 

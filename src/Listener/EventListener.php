@@ -4,6 +4,7 @@ namespace LaravelCode\EventSouring\Listener;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+use LaravelCode\EventSouring\Contracts\Event\Event;
 use LaravelCode\EventSouring\Contracts\Listener\Listener;
 use LaravelCode\EventSouring\Contracts\Locator\Locator;
 use LaravelCode\EventSouring\Events\AfterEventWasApplied;
@@ -19,7 +20,7 @@ class EventListener implements Listener
     ) {
     }
 
-    public function handle($eventName, $events)
+    public function handle(string $eventName, array $events): void
     {
         $handler = $this->locator->execute($eventName, $events);
         if (!$handler) {
@@ -34,12 +35,13 @@ class EventListener implements Listener
             return;
         }
 
+        /** @var Event $event */
         foreach ($events as $event) {
             $entity = null;
 
             event(new BeforeEventIsApplied($event));
 
-            /** @var Model $entity */
+            /** @var Model|null $entity */
             $entity = call_user_func([$handler, $name], $event);
 
             if ($entity) {

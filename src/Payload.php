@@ -3,6 +3,7 @@
 namespace LaravelCode\EventSouring;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
 
@@ -22,18 +23,24 @@ class Payload
 
     public static function fromRequest(Request $request, string $idParamName): self
     {
-        $props = array_merge($request->all(), $request->route()->parameters());
-        $props['id'] = $request->route()->parameter($idParamName);
+        $props = [];
+        $route = $request->route();
+
+        if (get_class($route) === Route::class) {
+            /** @var Route $route */
+            $props = array_merge($request->all(), $route->parameters());
+            $props['id'] = $route->parameter($idParamName);
+        }
 
         return new self($props);
     }
 
-    public function get(string $name, $default = null)
+    public function get(string $name, mixed $default = null): mixed
     {
         return $this->props[$name] ?? $default;
     }
 
-    public function set(string $name, $value)
+    public function set(string $name, mixed $value): void
     {
         if (isset($this->props[$name])) {
             throw new \Exception('Cannot set existing value');
@@ -42,7 +49,7 @@ class Payload
         $this->props[$name] = $value;
     }
 
-    public function has($name)
+    public function has(string $name): bool
     {
         return isset($this->props[$name]);
     }

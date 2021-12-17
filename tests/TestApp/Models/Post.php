@@ -11,7 +11,7 @@ use TestApp\Events\Posts\TitleWasChanged;
 use TestApp\Events\Posts\WasCreated;
 use TestApp\Models\Concerns\UsesUuid;
 
-class Post extends Model
+final class Post extends Model
 {
     use EventRecorder, UsesUuid;
 
@@ -46,7 +46,7 @@ class Post extends Model
         string $title,
         string $body,
         string $status,
-    ): static {
+    ): void {
         if ($this->title !== $title) {
             $this->record(new TitleWasChanged($this->id, $title));
         }
@@ -60,17 +60,17 @@ class Post extends Model
         }
     }
 
-    public function applyTitleWasChanged(TitleWasChanged $event)
+    public function applyTitleWasChanged(TitleWasChanged $event): void
     {
         $this->title = $event->title;
     }
 
-    public function applyBodyWasChanged(BodyWasChanged $event)
+    public function applyBodyWasChanged(BodyWasChanged $event): void
     {
         $this->body = $event->body;
     }
 
-    public function applyStatusWasChanged(StatusWasChanged $event)
+    public function applyStatusWasChanged(StatusWasChanged $event): void
     {
         $this->status = $event->status;
     }

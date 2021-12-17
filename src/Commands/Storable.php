@@ -20,7 +20,7 @@ trait Storable
     /**
      * @param string $id
      */
-    public function setCommandId(string $id)
+    public function setCommandId(string $id): void
     {
         $this->commandId = $id;
     }

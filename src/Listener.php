@@ -3,8 +3,8 @@
 namespace LaravelCode\EventSouring;
 
 use Illuminate\Database\Eloquent\Model;
+use LaravelCode\EventSouring\Contracts\Event\Event;
 use LaravelCode\EventSouring\Error\MethodNotImplemented;
-use Webmozart\Assert\Assert;
 
 class Listener
 {
@@ -12,10 +12,8 @@ class Listener
      * @throws MethodNotImplemented
      * @throws \ReflectionException
      */
-    public function execute(Model $model, $event)
+    public function execute(Model $model, Event $event): void
     {
-        Assert::isCallable($event, sprintf('%s in not callable.', $event));
-
         $reflection = new \ReflectionClass($event);
         $method = 'apply' . $reflection->getShortName();
 

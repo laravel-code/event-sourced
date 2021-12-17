@@ -7,7 +7,7 @@ use LaravelCode\EventSouring\Models\Command;
 
 class CommandActionHandler
 {
-    public function handle(ShouldStore $command)
+    public function handle(ShouldStore $command): void
     {
         $entity = Command::instance(
             $command->getCommandId(),

@@ -6,7 +6,7 @@ use LaravelCode\EventSouring\Payload;
 
 interface Command
 {
-    public function setCommandId(string $id);
+    public function setCommandId(string $id): void;
 
     /**
      * @return string|null

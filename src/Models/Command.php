@@ -30,7 +30,7 @@ use LaravelCode\EventSouring\Models\Events\CommandWasCreated;
  * @method static \Illuminate\Database\Eloquent\Builder|Command whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Command extends Model
+final class Command extends Model
 {
     use EventRecorder;
 
@@ -58,7 +58,7 @@ class Command extends Model
         return $entity;
     }
 
-    public function applyCommandWasCreated(CommandWasCreated $event)
+    public function applyCommandWasCreated(CommandWasCreated $event): void
     {
         $this->id = $event->id;
         $this->type = $event->type;

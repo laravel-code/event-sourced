@@ -22,7 +22,7 @@ class PostListener
         }
 
         call_user_func([$entity,
-            (new ApplyClassNameInflector())->execute($event),
+            (new ApplyClassNameInflector())->execute(get_class($event)),
         ], $event);
 
         $entity->version = $event->getVersion();

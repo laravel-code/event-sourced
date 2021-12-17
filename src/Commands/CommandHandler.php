@@ -19,11 +19,11 @@ class CommandHandler implements Handler
     }
 
     /**
-     * @param $eventName
-     * @param $events
+     * @param string $eventName
+     * @param array $events
      * @return void
      */
-    public function handle($eventName, $events)
+    public function handle(string $eventName, array $events): void
     {
         $handler = $this->locator->execute($eventName, $events);
         if (!$handler) {
@@ -49,7 +49,7 @@ class CommandHandler implements Handler
         }
     }
 
-    private function emit(mixed $event)
+    private function emit(mixed $event): void
     {
         if ($this->withEvents) {
             event($event);

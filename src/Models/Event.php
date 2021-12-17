@@ -12,7 +12,7 @@ use LaravelCode\EventSouring\Models\Events\EventWasCreated;
  * @property string $entity_id
  * @property string|null $command_id
  * @property string|null $author_id
- * @property Event $payload
+ * @property \LaravelCode\EventSouring\Contracts\Event\Event $payload
  * @property string $type
  * @property string $status
  * @property int $version
@@ -39,7 +39,7 @@ class Event extends Model
         'payload' => 'json',
     ];
 
-    public static function init(string|int $id, string $type, \LaravelCode\EventSouring\Contracts\Event\Event $payload, string $status, string $author = null)
+    public static function init(string|int $id, string $type, \LaravelCode\EventSouring\Contracts\Event\Event $payload, string $status, string $author = null): void
     {
         event(new EventWasCreated(
             $id,
@@ -50,7 +50,7 @@ class Event extends Model
         ));
     }
 
-    public function applyEventWasCreated(EventWasCreated $event)
+    public function applyEventWasCreated(EventWasCreated $event): void
     {
         $this->id = $event->id;
         $this->type = $event->type;

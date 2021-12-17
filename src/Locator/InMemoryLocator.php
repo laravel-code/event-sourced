@@ -24,7 +24,7 @@ class InMemoryLocator implements Locator
         return null;
     }
 
-    private function shouldHandle($eventName, $listenEvent): bool
+    private function shouldHandle(string $eventName, string $listenEvent): bool
     {
         if (!class_exists($eventName)) {
             return false;
