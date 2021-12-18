@@ -5,7 +5,7 @@ namespace LaravelCode\EventSouring\Models\Listeners;
 use LaravelCode\EventSouring\Contracts\Event\ShouldStore;
 use LaravelCode\EventSouring\Models\Event;
 
-class StoreEventListener extends \LaravelCode\EventSouring\Listener
+class StoreEventListener
 {
     public function apply(ShouldStore $event): void
     {

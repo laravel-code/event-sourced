@@ -21,7 +21,10 @@ trait FromPayloadTrait
             assert($param instanceof ReflectionParameter);
             $value = $payload->get(Str::snake($param->getName()));
 
-            if ($param->getType()->isBuiltIn()) {
+            $type = $param->getType();
+            assert($type instanceof \ReflectionNamedType);
+
+            if ($type->isBuiltIn()) {
                 $data[$param->getName()] = $value;
 
                 continue;

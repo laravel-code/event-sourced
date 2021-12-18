@@ -1,9 +1,11 @@
 <?php
+/**
+ * @deprecated this file is not needed?
+ */
 
 namespace LaravelCode\EventSouring\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelCode\EventSouring\Models\Events\EventWasCreated;
 
 /**
  * LaravelCode\EventSouring\Models\Event.
@@ -38,24 +40,4 @@ class Event extends Model
         'id' => 'string',
         'payload' => 'json',
     ];
-
-    public static function init(string|int $id, string $type, \LaravelCode\EventSouring\Contracts\Event\Event $payload, string $status, string $author = null): void
-    {
-        event(new EventWasCreated(
-            $id,
-            $type,
-            $payload,
-            $status,
-            $author
-        ));
-    }
-
-    public function applyEventWasCreated(EventWasCreated $event): void
-    {
-        $this->id = $event->id;
-        $this->type = $event->type;
-        $this->payload = $event->payload;
-        $this->status = $event->status;
-        $this->author_id = $event->author;
-    }
 }

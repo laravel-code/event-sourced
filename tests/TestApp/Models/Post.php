@@ -20,8 +20,8 @@ final class Post extends Model
         string $body,
         string $status,
         string $secretKey
-    ): static {
-        $entity = new static();
+    ): self {
+        $entity = new self();
         $entity->id = Str::uuid();
         $entity->record(new WasCreated(
             $entity->id,
@@ -34,7 +34,7 @@ final class Post extends Model
         return $entity;
     }
 
-    public function applyWasCreated(WasCreated $event)
+    public function applyWasCreated(WasCreated $event): void
     {
         $this->title = $event->title;
         $this->body = $event->body;
