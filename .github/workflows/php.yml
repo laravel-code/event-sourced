@@ -36,5 +36,5 @@ jobs:
     - name: Run test suite
       run: XDEBUG_MODE=coverage vendor/bin/phpunit
 
-    - name: Run coverage threshold >= 60%
-      run: php coverage-checker.php ./clover.xml 60
+    - name: Run coverage threshold >= 75%
+      run: php coverage-checker.php ./clover.xml 75

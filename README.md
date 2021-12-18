@@ -1,3 +1,5 @@
+![example workflow](https://github.com/laravel-code/event-sourced/actions/workflows/php.yml/badge.svg)
+
 # Laravel event-sourcing
 
 Event sourcing for laravel 8+
