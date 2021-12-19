@@ -4,6 +4,7 @@ namespace TestApp\Commands\Handlers;
 
 use TestApp\Commands\Posts\Change;
 use TestApp\Commands\Posts\Create;
+use TestApp\Commands\Posts\StopPropagation;
 use TestApp\Models\Post;
 
 class PostHandler
@@ -33,5 +34,13 @@ class PostHandler
         );
 
         $post->publishEvents($command->getCommandId());
+    }
+
+    /**
+     * @throws \LaravelCode\EventSouring\Error\StopPropagation
+     */
+    public function handleStopPropagation(StopPropagation $command)
+    {
+        throw new \LaravelCode\EventSouring\Error\StopPropagation();
     }
 }

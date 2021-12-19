@@ -92,6 +92,15 @@ class PostControllerTest extends TestCase
         $response->assertExactJson(['message' => 'Server Error']);
     }
 
+    public function testStopPropagation()
+    {
+        $response = $this->post('/stop-propagation', [], [
+            'Accept' => 'application/json',
+        ]);
+
+        $response->assertStatus(200);
+    }
+
     protected function getPackageProviders($app)
     {
         return [
@@ -115,6 +124,7 @@ class PostControllerTest extends TestCase
         $router->post('/create-partial', [PostController::class, 'storePartialEntity']);
         $router->post('/create-no-entity', [PostController::class, 'storeNoEntity']);
         $router->post('/no-handle', [PostController::class, 'noHandle']);
+        $router->post('/stop-propagation', [PostController::class, 'stopPropagation']);
     }
 
     protected function defineEnvironment($app)

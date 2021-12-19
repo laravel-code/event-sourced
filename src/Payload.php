@@ -5,6 +5,7 @@ namespace LaravelCode\EventSouring;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
+use LaravelCode\EventSouring\Error\PayloadException;
 use Webmozart\Assert\Assert;
 
 class Payload
@@ -43,7 +44,7 @@ class Payload
     public function set(string $name, mixed $value): void
     {
         if (isset($this->props[$name])) {
-            throw new \Exception('Cannot set existing value');
+            throw new PayloadException([$name]);
         }
 
         $this->props[$name] = $value;

@@ -4,7 +4,7 @@ namespace TestApp\Commands\Posts;
 
 use LaravelCode\EventSouring\Commands\Storable;
 
-class NoHandle extends AbstractCommand
+class StopPropagation extends AbstractCommand
 {
     use Storable;
 

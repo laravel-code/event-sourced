@@ -7,6 +7,8 @@ use Illuminate\Routing\Controller;
 use LaravelCode\EventSouring\Http\Controller\HandleCommand;
 use TestApp\Commands\Posts\Change;
 use TestApp\Commands\Posts\Create;
+use TestApp\Commands\Posts\NoHandle;
+use TestApp\Commands\Posts\StopPropagation;
 
 class PostController extends Controller
 {
@@ -33,11 +35,16 @@ class PostController extends Controller
 
     public function noHandle()
     {
-        return $this->handleCommand(Create::class);
+        return $this->handleCommand(NoHandle::class);
     }
 
     public function update(Request $request)
     {
         return $this->handleCommand(Change::class);
+    }
+
+    public function stopPropagation(Request $request)
+    {
+        return $this->handleCommand(StopPropagation::class);
     }
 }
