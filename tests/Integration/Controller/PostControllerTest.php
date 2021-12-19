@@ -16,11 +16,11 @@ class PostControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testStoreCommandAndEvent()
+    public function testStoreCommandAndEvent(): void
     {
-        $this->assertEquals(0, Command::all()->count(), 'Unexpected count for table commands');
-        $this->assertEquals(2, Post::all()->count(), 'Unexpected count for table posts');
-        $this->assertEquals(0, Event::all()->count(), 'Unexpected count for table events');
+        $this->assertEquals(0, Command::count(), 'Unexpected count for table commands');
+        $this->assertEquals(2, Post::count(), 'Unexpected count for table posts');
+        $this->assertEquals(0, Event::count(), 'Unexpected count for table events');
 
         $response = $this->post('/create', [
             'title' => 'TITLE',
@@ -37,12 +37,12 @@ class PostControllerTest extends TestCase
         ]);
         $response->assertJsonCount(3);
 
-        $this->assertEquals(1, Command::all()->count(), 'Unexpected count for table commands');
-        $this->assertEquals(3, Post::all()->count(), 'Unexpected count for table posts');
-        $this->assertEquals(1, Event::all()->count(), 'Unexpected count for table events');
+        $this->assertEquals(1, Command::count(), 'Unexpected count for table commands');
+        $this->assertEquals(3, Post::count(), 'Unexpected count for table posts');
+        $this->assertEquals(1, Event::count(), 'Unexpected count for table events');
     }
 
-    public function testNoEntityReturned()
+    public function testNoEntityReturned(): void
     {
         $response = $this->post('/create-no-entity', [
             'title' => 'TITLE',
@@ -60,7 +60,7 @@ class PostControllerTest extends TestCase
         $response->assertJsonCount(2);
     }
 
-    public function testPartialEntityReturned()
+    public function testPartialEntityReturned(): void
     {
         $response = $this->post('/create-partial', [
             'title' => 'TITLE',
@@ -82,7 +82,7 @@ class PostControllerTest extends TestCase
         ]);
     }
 
-    public function testNoHandle()
+    public function testNoHandle(): void
     {
         $response = $this->post('/no-handle', [], [
             'Accept' => 'application/json',
@@ -92,7 +92,7 @@ class PostControllerTest extends TestCase
         $response->assertExactJson(['message' => 'Server Error']);
     }
 
-    public function testStopPropagation()
+    public function testStopPropagation(): void
     {
         $response = $this->post('/stop-propagation', [], [
             'Accept' => 'application/json',
@@ -101,7 +101,7 @@ class PostControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             ServiceProvider::class,
@@ -109,7 +109,7 @@ class PostControllerTest extends TestCase
         ];
     }
 
-    protected function defineDatabaseMigrations()
+    protected function defineDatabaseMigrations(): void
     {
         $this->loadMigrationsFrom(__DIR__ . '/../../fixtures');
     }
@@ -118,7 +118,7 @@ class PostControllerTest extends TestCase
      * @param Router $router
      * @return void
      */
-    protected function defineRoutes($router)
+    protected function defineRoutes($router): void
     {
         $router->post('/create', [PostController::class, 'store']);
         $router->post('/create-partial', [PostController::class, 'storePartialEntity']);
@@ -127,7 +127,7 @@ class PostControllerTest extends TestCase
         $router->post('/stop-propagation', [PostController::class, 'stopPropagation']);
     }
 
-    protected function defineEnvironment($app)
+    protected function defineEnvironment($app): void
     {
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testbench');

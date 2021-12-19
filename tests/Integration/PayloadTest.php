@@ -12,7 +12,7 @@ class PayloadTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function testGetters($data)
+    public function testGetters(array $data): void
     {
         $payload = new Payload($data);
 
@@ -25,7 +25,7 @@ class PayloadTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function testSetters($data)
+    public function testSetters(array $data): void
     {
         $payload = new Payload($data);
 
@@ -41,7 +41,7 @@ class PayloadTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function testSetterExistingVar($data)
+    public function testSetterExistingVar(array $data): void
     {
         $this->expectException(PayloadException::class);
 
@@ -49,7 +49,7 @@ class PayloadTest extends \PHPUnit\Framework\TestCase
         $payload->set('name', 'Johnson Doe');
     }
 
-    public function dataProvider()
+    public function dataProvider(): array
     {
         return [
             [['name' => 'Jane Doe', 'birthday' => '2010-09-24']],

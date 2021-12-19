@@ -9,10 +9,11 @@ class CommandTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider provider
+     * @param array $data
      * @return void
      * @throws \ReflectionException
      */
-    public function testCommandFromPayload($data)
+    public function testCommandFromPayload(array $data): void
     {
         /** @var Create $command */
         $command = Create::fromPayload(new Payload($data));
@@ -30,10 +31,11 @@ class CommandTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider provider
-     * @param $data
+     * @param array $data
      * @return void
+     * @throws \ReflectionException
      */
-    public function testCommandToJson($data)
+    public function testCommandToJson(array $data): void
     {
         /** @var Create $command */
         $command = Create::fromPayload(new Payload($data));
@@ -54,7 +56,7 @@ class CommandTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('user-0001', $payload['author_id'], 'author_id did not return expected value');
     }
 
-    public function provider()
+    public function provider(): array
     {
         return [
             [[

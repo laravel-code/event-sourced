@@ -27,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
             new StoreCommandHandler(),
             new CommandHandler(
                 new InMemoryInstanceOfLocator([
-                    AbstractCommand::class => new PostHandler(),
+                    AbstractCommand::class => $this->app->make(PostHandler::class),
                 ]),
                 new HandleClassNameInflector()
             ),
@@ -36,7 +36,7 @@ class EventServiceProvider extends ServiceProvider
         new EventBus([
             new EventListener(
                 new InMemoryInstanceOfLocator([
-                    AbstractEvent::class => new PostListener(),
+                    AbstractEvent::class => $this->app->make(PostListener::class),
                 ]),
                 new ApplyInflector()
             ),

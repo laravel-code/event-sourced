@@ -12,7 +12,7 @@ trait FromPayloadTrait
     /**
      * @throws \ReflectionException
      */
-    public static function fromPayload(Payload $payload): object
+    public static function fromPayload(Payload $payload): self
     {
         $reflection = new \ReflectionClass(get_called_class());
 
@@ -32,8 +32,10 @@ trait FromPayloadTrait
 
             $data[$param->getName()] = self::handleToExoticParam($param, $value);
         }
+        /** @var self $instance */
+        $instance = $reflection->newInstance(...$data);
 
-        return $reflection->newInstance(...$data);
+        return $instance;
     }
 
     /**

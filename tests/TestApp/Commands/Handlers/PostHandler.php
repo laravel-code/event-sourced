@@ -9,10 +9,10 @@ use TestApp\Models\Post;
 
 class PostHandler
 {
-    public function handleCreate(Create $command)
+    public function handleCreate(Create $command): void
     {
         /** @var Post $post */
-        $post = Post::make(
+        $post = Post::create(
             $command->title,
             $command->body,
             $command->status,
@@ -22,10 +22,10 @@ class PostHandler
         $post->publishEvents($command->getCommandId());
     }
 
-    public function handleChange(Change $command)
+    public function handleChange(Change $command): void
     {
         /** @var Post $post */
-        $post = (new \TestApp\Models\Post)->find($command->getId());
+        $post = (new \TestApp\Models\Post)->find($command->id);
 
         $post->change(
             $command->title,
@@ -39,7 +39,7 @@ class PostHandler
     /**
      * @throws \LaravelCode\EventSouring\Error\StopPropagation
      */
-    public function handleStopPropagation(StopPropagation $command)
+    public function handleStopPropagation(StopPropagation $command): void
     {
         throw new \LaravelCode\EventSouring\Error\StopPropagation();
     }

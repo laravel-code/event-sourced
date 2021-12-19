@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 trait CarbonValue
 {
-    public static function toCarbon($value): Carbon
+    public static function toCarbon(string $value): Carbon
     {
         return Carbon::parse($value);
     }

@@ -11,11 +11,22 @@ use TestApp\Events\Posts\TitleWasChanged;
 use TestApp\Events\Posts\WasCreated;
 use TestApp\Models\Concerns\UsesUuid;
 
+/**
+ * @property string $id
+ * @property string $title
+ * @property string $body
+ * @property string $status
+ * @property string $secret_key
+ */
 final class Post extends Model
 {
     use EventRecorder, UsesUuid;
 
-    public static function make(
+    /**
+     * @throws \LaravelCode\EventSouring\Error\MethodNotImplemented
+     * @throws \ReflectionException
+     */
+    public static function create(
         string $title,
         string $body,
         string $status,

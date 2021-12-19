@@ -9,11 +9,13 @@ class EventTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider provider
+     * @param array $data
      * @return void
      * @throws \ReflectionException
      */
-    public function testEventFromPayload($data)
+    public function testEventFromPayload(array $data): void
     {
+        /** @var WasCreated $event */
         $event = WasCreated::fromPayload(new Payload($data));
         $this->assertInstanceOf(WasCreated::class, $event);
 
@@ -26,10 +28,11 @@ class EventTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider provider
-     * @param $data
+     * @param array $data
      * @return void
+     * @throws \ReflectionException
      */
-    public function testEventToJson($data)
+    public function testEventToJson(array $data): void
     {
         /** @var WasCreated $event */
         $event = WasCreated::fromPayload(new Payload($data));
@@ -49,10 +52,11 @@ class EventTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider provider
-     * @param $data
+     * @param array $data
      * @return void
+     * @throws \ReflectionException
      */
-    public function testEventReplayed($data)
+    public function testEventReplayed(array $data): void
     {
         /** @var WasCreated $event */
         $event = WasCreated::fromPayload(new Payload($data));
@@ -63,7 +67,7 @@ class EventTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($payload['being_replayed']);
     }
 
-    public function provider()
+    public function provider(): array
     {
         return [
             [[

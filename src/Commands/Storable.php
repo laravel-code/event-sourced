@@ -52,7 +52,7 @@ trait Storable
     /**
      * @throws \ReflectionException
      */
-    public static function fromPayload(Payload $payload): object
+    public static function fromPayload(Payload $payload): self
     {
         $instance = self::baseFromPayload($payload);
         $instance->setCommandId(Str::uuid());
@@ -60,7 +60,7 @@ trait Storable
         return $instance;
     }
 
-    public function handle()
+    public function handle(): void
     {
         event($this);
     }

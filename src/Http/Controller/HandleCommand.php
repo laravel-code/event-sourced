@@ -2,10 +2,13 @@
 
 namespace LaravelCode\EventSouring\Http\Controller;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
+use LaravelCode\EventSouring\Contracts\Command\Command;
 use LaravelCode\EventSouring\Events\AfterCommandWasHandled;
 use LaravelCode\EventSouring\Events\EntityWasSet;
 use LaravelCode\EventSouring\Payload;
@@ -13,9 +16,9 @@ use Webmozart\Assert\Assert;
 
 trait HandleCommand
 {
-    private $entity;
+    private ?Model $entity;
 
-    private $response;
+    private ?JsonResponse $response;
 
     protected array $_defaultConfig = [
         'createUUID' => null,
@@ -42,6 +45,10 @@ trait HandleCommand
     private function handleCommand(string $className, array $opts = []): ?JsonResponse
     {
         $opts = array_merge($this->_defaultConfig, $opts);
+        /**
+         * Phpstan is difficult.
+         */
+        /** @var Request $request */
         $request = \Illuminate\Support\Facades\Request::instance();
 
         if (empty($opts['idParamName'])) {
@@ -63,11 +70,11 @@ trait HandleCommand
     }
 
     /**
-     * @param $command
+     * @param Command $command
      * @param array $opts
      * @return void
      */
-    private function setupListeners($command, array $opts)
+    private function setupListeners(Command $command, array $opts)
     {
         /*
          * When running in the console, an api response is not expected.
@@ -147,10 +154,10 @@ trait HandleCommand
     }
 
     /**
-     * @param $array
+     * @param array $array
      * @return array
      */
-    public static function undot($array): array
+    public static function undot(array $array): array
     {
         $results = [];
 
@@ -162,9 +169,9 @@ trait HandleCommand
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    private function extractRouteIdParamName(): string|null
+    private function extractRouteIdParamName(): string
     {
         $reflection = new \ReflectionClass($this);
         $name = $reflection->getShortName();
