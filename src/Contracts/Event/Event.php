@@ -1,9 +1,13 @@
 <?php
 
-namespace LaravelCode\EventSouring\Contracts\Event;
+namespace LaravelCode\EventSourcing\Contracts\Event;
 
-use LaravelCode\EventSouring\Payload;
+use Carbon\Carbon;
+use LaravelCode\EventSourcing\Payload;
 
+/**
+ * @property string $id
+ */
 interface Event
 {
     /**
@@ -15,6 +19,21 @@ interface Event
      * @param int $version
      */
     public function setVersion(int $version): void;
+
+    /**
+     * @return int
+     */
+    public function getVersion(): int;
+
+    /**
+     * @param Carbon $date
+     */
+    public function setCreatedAt(Carbon $date): void;
+
+    /**
+     * @param Carbon $date
+     */
+    public function setUpdatedAt(Carbon $date): void;
 
     /**
      * @return string|null

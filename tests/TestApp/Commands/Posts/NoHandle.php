@@ -2,7 +2,7 @@
 
 namespace TestApp\Commands\Posts;
 
-use LaravelCode\EventSouring\Commands\Storable;
+use LaravelCode\EventSourcing\Commands\Storable;
 
 class NoHandle extends AbstractCommand
 {

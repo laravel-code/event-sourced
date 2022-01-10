@@ -1,18 +1,18 @@
 <?php
 
-namespace LaravelCode\EventSouring\Listener;
+namespace LaravelCode\EventSourcing\Listener;
 
 use Illuminate\Support\Facades\Log;
-use LaravelCode\EventSouring\Contracts\Event\ShouldStore;
-use LaravelCode\EventSouring\Handler;
-use LaravelCode\EventSouring\Inflector\ApplyInflector;
-use LaravelCode\EventSouring\Locator\InMemoryLocator;
+use LaravelCode\EventSourcing\Contracts\Event\ShouldStore;
+use LaravelCode\EventSourcing\Handler;
+use LaravelCode\EventSourcing\Inflector\ApplyInflector;
+use LaravelCode\EventSourcing\Locator\InMemoryLocator;
 
 class StoreEventListener extends EventListener implements Handler
 {
     public function __construct()
     {
-        $listener = new \LaravelCode\EventSouring\Models\Listeners\StoreEventListener();
+        $listener = new \LaravelCode\EventSourcing\Models\Listeners\StoreEventListener();
         $locations = ['*' => $listener];
         $locator = new InMemoryLocator($locations);
 
@@ -36,17 +36,22 @@ class StoreEventListener extends EventListener implements Handler
         }
         /** @var ShouldStore $event */
         foreach ($events as $event) {
-            if (!$event instanceof ShouldStore) {
-                continue;
-            }
-
-            if ($event->isBeingReplayed()) {
-                Log::notice(sprintf('The events %s is being replayed, do not store', get_class($event)));
-
-                continue;
-            }
-
-            call_user_func([$handler, $name], $event);
+            $this->processEvent($event, $handler, $name);
         }
+    }
+
+    private function processEvent(mixed $event, mixed $handler, string $name): void
+    {
+        if (!$event instanceof ShouldStore) {
+            return;
+        }
+
+        if ($event->isBeingReplayed()) {
+            Log::notice(sprintf('The events %s is being replayed, do not store', get_class($event)));
+
+            return;
+        }
+
+        call_user_func([$handler, $name], $event);
     }
 }

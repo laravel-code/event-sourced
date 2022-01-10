@@ -3,7 +3,7 @@
  * @deprecated this is not needed?
  */
 
-namespace LaravelCode\EventSouring;
+namespace LaravelCode\EventSourcing;
 
 class Listener
 {

@@ -3,18 +3,19 @@
  * @deprecated this file is not needed?
  */
 
-namespace LaravelCode\EventSouring\Models;
+namespace LaravelCode\EventSourcing\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * LaravelCode\EventSouring\Models\Event.
+ * LaravelCode\EventSourcing\Models\Event.
  *
  * @property string $id
  * @property string $entity_id
  * @property string|null $command_id
  * @property string|null $author_id
- * @property \LaravelCode\EventSouring\Contracts\Event\Event $payload
+ * @property \LaravelCode\EventSourcing\Contracts\Event\Event|array $payload
  * @property string $type
  * @property string $status
  * @property int $version
@@ -40,4 +41,38 @@ class Event extends Model
         'id' => 'string',
         'payload' => 'json',
     ];
+
+    protected array $includes = [
+        'command',
+        'command.error',
+    ];
+
+    protected array $orderFields = [
+        'revision_number',
+        'model',
+        'created_at',
+        'updated_at',
+    ];
+
+    protected function search(): array
+    {
+        return [
+            'id',
+            'resource_id',
+            'type' => function (Builder $query, $value) {
+                if (class_exists($value)) {
+                    return $query->where('class', $value);
+                }
+
+                return $query->where('class', $value);
+            },
+            'command_id',
+            'author_id',
+        ];
+    }
+
+    public function command(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Command::class);
+    }
 }

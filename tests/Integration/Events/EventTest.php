@@ -2,7 +2,7 @@
 
 namespace Tests\Events;
 
-use LaravelCode\EventSouring\Payload;
+use LaravelCode\EventSourcing\Payload;
 use TestApp\Events\Posts\WasCreated;
 
 class EventTest extends \PHPUnit\Framework\TestCase

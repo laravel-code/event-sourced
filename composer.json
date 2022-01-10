@@ -19,8 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelCode\\EventSouring\\": "./src"
-
+            "LaravelCode\\EventSourcing\\": "./src"
         }
     },
     "autoload-dev": {

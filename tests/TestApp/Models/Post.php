@@ -4,7 +4,7 @@ namespace TestApp\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use LaravelCode\EventSouring\Events\EventRecorder;
+use LaravelCode\EventSourcing\Events\EventRecorder;
 use TestApp\Events\Posts\BodyWasChanged;
 use TestApp\Events\Posts\StatusWasChanged;
 use TestApp\Events\Posts\TitleWasChanged;
@@ -23,7 +23,7 @@ final class Post extends Model
     use EventRecorder, UsesUuid;
 
     /**
-     * @throws \LaravelCode\EventSouring\Error\MethodNotImplemented
+     * @throws \LaravelCode\EventSourcing\Error\MethodNotImplemented
      * @throws \ReflectionException
      */
     public static function create(

@@ -1,14 +1,15 @@
 <?php
 
-namespace LaravelCode\EventSouring\Events;
+namespace LaravelCode\EventSourcing\Events;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelCode\EventSouring\Contracts\Event\Event;
-use LaravelCode\EventSouring\Helpers\JsonSerializeTrait;
+use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Helpers\JsonSerializeTrait;
 
-class AfterEventWasApplied implements \JsonSerializable
+class AfterEventWasApplied implements \JsonSerializable, Event
 {
     use JsonSerializeTrait;
+    use Storable;
 
     public function __construct(public Event $event, public ?Model $model = null)
     {

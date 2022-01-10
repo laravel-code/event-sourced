@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSouring\Contracts\Listener;
+namespace LaravelCode\EventSourcing\Contracts\Listener;
 
 interface Listener
 {

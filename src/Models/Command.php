@@ -1,15 +1,15 @@
 <?php
 
-namespace LaravelCode\EventSouring\Models;
+namespace LaravelCode\EventSourcing\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelCode\EventSouring\Contracts\Command\Command as CommandInterface;
-use LaravelCode\EventSouring\Contracts\Command\ShouldStore;
-use LaravelCode\EventSouring\Events\EventRecorder;
-use LaravelCode\EventSouring\Models\Events\CommandWasCreated;
+use LaravelCode\EventSourcing\Contracts\Command\Command as CommandInterface;
+use LaravelCode\EventSourcing\Contracts\Command\ShouldStore;
+use LaravelCode\EventSourcing\Events\EventRecorder;
+use LaravelCode\EventSourcing\Models\Events\CommandWasCreated;
 
 /**
- * LaravelCode\EventSouring\Models\Command.
+ * LaravelCode\EventSourcing\Models\Command.
  *
  * @property string $id
  * @property string|null $author_id

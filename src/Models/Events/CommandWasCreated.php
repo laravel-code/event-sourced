@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelCode\EventSouring\Models\Events;
+namespace LaravelCode\EventSourcing\Models\Events;
 
-use LaravelCode\EventSouring\Contracts\Command\ShouldStore;
-use LaravelCode\EventSouring\Contracts\Event\Event;
-use LaravelCode\EventSouring\Events\Storable;
+use LaravelCode\EventSourcing\Contracts\Command\ShouldStore;
+use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Events\Storable;
 
 class CommandWasCreated implements Event
 {

@@ -2,7 +2,7 @@
 
 namespace Tests\Commands;
 
-use LaravelCode\EventSouring\Payload;
+use LaravelCode\EventSourcing\Payload;
 use TestApp\Commands\Posts\Create;
 
 class CommandTest extends \PHPUnit\Framework\TestCase

@@ -3,15 +3,15 @@
 namespace TestApp;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use LaravelCode\EventSouring\CommandBus;
-use LaravelCode\EventSouring\Commands\CommandHandler;
-use LaravelCode\EventSouring\Commands\StoreCommandHandler;
-use LaravelCode\EventSouring\EventBus;
-use LaravelCode\EventSouring\Inflector\ApplyInflector;
-use LaravelCode\EventSouring\Inflector\HandleClassNameInflector;
-use LaravelCode\EventSouring\Listener\EventListener;
-use LaravelCode\EventSouring\Listener\StoreEventListener;
-use LaravelCode\EventSouring\Locator\InMemoryInstanceOfLocator;
+use LaravelCode\EventSourcing\CommandBus;
+use LaravelCode\EventSourcing\Commands\CommandHandler;
+use LaravelCode\EventSourcing\Commands\StoreCommandHandler;
+use LaravelCode\EventSourcing\EventBus;
+use LaravelCode\EventSourcing\Inflector\ApplyInflector;
+use LaravelCode\EventSourcing\Inflector\HandleClassNameInflector;
+use LaravelCode\EventSourcing\Listener\EventListener;
+use LaravelCode\EventSourcing\Listener\StoreEventListener;
+use LaravelCode\EventSourcing\Locator\InMemoryInstanceOfLocator;
 use TestApp\Commands\Handlers\PostHandler;
 use TestApp\Commands\Posts\AbstractCommand;
 use TestApp\Events\Listeners\PostListener;

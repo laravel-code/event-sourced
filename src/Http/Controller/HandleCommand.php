@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSouring\Http\Controller;
+namespace LaravelCode\EventSourcing\Http\Controller;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
-use LaravelCode\EventSouring\Contracts\Command\Command;
-use LaravelCode\EventSouring\Events\AfterCommandWasHandled;
-use LaravelCode\EventSouring\Events\EntityWasSet;
-use LaravelCode\EventSouring\Payload;
+use LaravelCode\EventSourcing\Contracts\Command\Command;
+use LaravelCode\EventSourcing\Events\AfterCommandWasHandled;
+use LaravelCode\EventSourcing\Events\EntityWasSet;
+use LaravelCode\EventSourcing\Payload;
 use Webmozart\Assert\Assert;
 
 trait HandleCommand

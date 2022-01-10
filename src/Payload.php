@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelCode\EventSouring;
+namespace LaravelCode\EventSourcing;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
-use LaravelCode\EventSouring\Error\PayloadException;
+use LaravelCode\EventSourcing\Error\PayloadException;
 use Webmozart\Assert\Assert;
 
 class Payload

@@ -1,16 +1,30 @@
 <?php
 
-namespace LaravelCode\EventSouring\Models\Listeners;
+namespace LaravelCode\EventSourcing\Models\Listeners;
 
-use LaravelCode\EventSouring\Models\Command;
-use LaravelCode\EventSouring\Models\Events\CommandWasCreated;
+use LaravelCode\EventSourcing\Events\AfterCommandWasHandled;
+use LaravelCode\EventSourcing\Models\Command;
+use LaravelCode\EventSourcing\Models\Events\CommandWasCreated;
 
 class StoreCommandListener
 {
-    public function apply(CommandWasCreated $event): void
+    public function applyCommandWasCreated(CommandWasCreated $event): void
     {
         $command = new Command();
         $command->applyCommandWasCreated($event);
         $command->saveOrFail();
+    }
+
+    public function applyAfterCommandWasHandled(AfterCommandWasHandled $event): void
+    {
+        $command = $event->command;
+
+        /** @var Command $entity */
+        $entity = Command::find($command->getCommandId());
+
+        if ($entity->status === 'received') {
+            $entity->status = 'handled';
+            $entity->saveOrFail();
+        }
     }
 }

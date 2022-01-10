@@ -9,11 +9,11 @@ class WasCreated extends AbstractEvent
         public string $title,
         public string $body,
         public string $status,
-        protected string $secretKey
+        protected string|null $secretKey
     ) {
     }
 
-    public function getSecretKey(): string
+    public function getSecretKey(): string|null
     {
         return $this->secretKey;
     }

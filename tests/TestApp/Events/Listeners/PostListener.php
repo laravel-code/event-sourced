@@ -3,43 +3,22 @@
 namespace TestApp\Events\Listeners;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelCode\EventSouring\Error\EventVersionException;
-use LaravelCode\EventSouring\Inflector\ApplyClassNameInflector;
-use TestApp\Events\Posts\AbstractEvent;
-use TestApp\Events\Posts\WasCreated;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Events\Listener\ApplyListener;
 use TestApp\Models\Post;
 
-class PostListener
+class PostListener extends ApplyListener
 {
-    /**
-     * @throws \Throwable
-     */
-    public function apply(AbstractEvent $event): Model
+    public function getEntity(Event $event): Model
     {
-        $entity = $this->getEntity($event);
-        if ($entity->version > $event->getVersion()) {
-            throw new EventVersionException();
+        try {
+            return (new \TestApp\Models\Post)->findOrFail($event->id);
+        } catch (ModelNotFoundException) {
+            $entity = new Post();
+            $entity->id = $event->id;
+
+            return $entity;
         }
-
-        call_user_func([$entity,
-            (new ApplyClassNameInflector())->execute(get_class($event)),
-        ], $event);
-
-        $entity->version = $event->getVersion();
-        $entity->saveOrFail();
-
-        return $entity;
-    }
-
-    private function getEntity(AbstractEvent $event): Post
-    {
-        if (get_class($event) == WasCreated::class) {
-            $post = new Post();
-            $post->id = $event->getId();
-
-            return $post;
-        }
-
-        return (new \TestApp\Models\Post)->find($event->getId());
     }
 }

@@ -3,7 +3,7 @@
 namespace Tests\Commands;
 
 use Carbon\Carbon;
-use LaravelCode\EventSouring\Payload;
+use LaravelCode\EventSourcing\Payload;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
 use TestApp\Commands\Posts\WithObjects;

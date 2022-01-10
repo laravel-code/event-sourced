@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelCode\EventSouring\Contracts\Command;
+namespace LaravelCode\EventSourcing\Contracts\Command;
 
-use LaravelCode\EventSouring\Payload;
+use LaravelCode\EventSourcing\Payload;
 
 interface Command
 {

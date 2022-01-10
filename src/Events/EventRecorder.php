@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelCode\EventSouring\Events;
+namespace LaravelCode\EventSourcing\Events;
 
 use function event;
 use Illuminate\Support\Str;
-use LaravelCode\EventSouring\Contracts\Event\Event;
-use LaravelCode\EventSouring\Error\MethodNotImplemented;
-use LaravelCode\EventSouring\Inflector\ApplyClassNameInflector;
+use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Error\MethodNotImplemented;
+use LaravelCode\EventSourcing\Inflector\ApplyClassNameInflector;
 
 /**
  * @property int $version

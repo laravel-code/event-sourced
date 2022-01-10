@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSouring\Contracts\Event;
+namespace LaravelCode\EventSourcing\Contracts\Event;
 
 /**
  * @property mixed $id

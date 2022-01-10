@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSouring\Inflector;
+namespace LaravelCode\EventSourcing\Inflector;
 
 class HandleInflector implements Inflector
 {

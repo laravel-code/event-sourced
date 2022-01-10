@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelCode\EventSouring\Locator;
+namespace LaravelCode\EventSourcing\Locator;
 
-use LaravelCode\EventSouring\Contracts\Locator\Locator;
+use LaravelCode\EventSourcing\Contracts\Locator\Locator;
 use ReflectionException;
 
 class InMemoryInstanceOfLocator implements Locator

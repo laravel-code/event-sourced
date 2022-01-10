@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelCode\EventSouring\Helpers;
+namespace LaravelCode\EventSourcing\Helpers;
 
 use Illuminate\Support\Str;
-use LaravelCode\EventSouring\Error\ParamTypeException;
-use LaravelCode\EventSouring\Payload;
+use LaravelCode\EventSourcing\Error\ParamTypeException;
+use LaravelCode\EventSourcing\Payload;
 use ReflectionParameter;
 
 trait FromPayloadTrait

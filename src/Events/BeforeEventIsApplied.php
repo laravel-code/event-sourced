@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelCode\EventSouring\Events;
+namespace LaravelCode\EventSourcing\Events;
 
-use LaravelCode\EventSouring\Contracts\Event\Event;
-use LaravelCode\EventSouring\Helpers\JsonSerializeTrait;
+use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Helpers\JsonSerializeTrait;
 
-class BeforeEventIsApplied
+class BeforeEventIsApplied implements \JsonSerializable, Event
 {
-    use JsonSerializeTrait;
+    use JsonSerializeTrait, Storable;
 
     public function __construct(public Event $event)
     {

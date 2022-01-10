@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelCode\EventSouring\Commands;
+namespace LaravelCode\EventSourcing\Commands;
 
 use Illuminate\Support\Str;
-use LaravelCode\EventSouring\Helpers\FromPayloadTrait;
-use LaravelCode\EventSouring\Helpers\JsonSerializeTrait;
-use LaravelCode\EventSouring\Payload;
+use LaravelCode\EventSourcing\Helpers\FromPayloadTrait;
+use LaravelCode\EventSourcing\Helpers\JsonSerializeTrait;
+use LaravelCode\EventSourcing\Payload;
 
 trait Storable
 {

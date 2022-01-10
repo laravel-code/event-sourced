@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelCode\EventSouring\Commands;
+namespace LaravelCode\EventSourcing\Commands;
 
 use Illuminate\Support\Facades\Log;
-use LaravelCode\EventSouring\Contracts\Locator\Locator;
-use LaravelCode\EventSouring\Events\AfterCommandWasHandled;
-use LaravelCode\EventSouring\Events\BeforeCommandIsHandled;
-use LaravelCode\EventSouring\Handler;
-use LaravelCode\EventSouring\Inflector\Inflector;
+use LaravelCode\EventSourcing\Contracts\Locator\Locator;
+use LaravelCode\EventSourcing\Events\AfterCommandWasHandled;
+use LaravelCode\EventSourcing\Events\BeforeCommandIsHandled;
+use LaravelCode\EventSourcing\Handler;
+use LaravelCode\EventSourcing\Inflector\Inflector;
 
 class CommandHandler implements Handler
 {

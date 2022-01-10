@@ -1,13 +1,14 @@
 <?php
 
-namespace LaravelCode\EventSouring\Events;
+namespace LaravelCode\EventSourcing\Events;
 
-use LaravelCode\EventSouring\Contracts\Command\Command;
-use LaravelCode\EventSouring\Helpers\JsonSerializeTrait;
+use LaravelCode\EventSourcing\Contracts\Command\Command;
+use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Helpers\JsonSerializeTrait;
 
-class BeforeCommandIsHandled
+class BeforeCommandIsHandled implements \JsonSerializable, Event
 {
-    use JsonSerializeTrait;
+    use JsonSerializeTrait, Storable;
 
     public function __construct(public Command $command)
     {

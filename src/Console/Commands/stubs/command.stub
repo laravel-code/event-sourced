@@ -1,0 +1,16 @@
+<?php
+namespace DummyNamespace;
+
+use LaravelCode\EventSouring\Commands\Storable;
+use LaravelCode\EventSouring\Contracts\Command\Command;
+use LaravelCode\EventSouring\Contracts\Command\ShouldStore;
+
+class DummyClass implements Command, \JsonSerializable, ShouldStore
+{
+    use Storable;
+
+    public function __construct(
+        public string $id
+    ) {
+    }
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSouring\Contracts\Locator;
+namespace LaravelCode\EventSourcing\Contracts\Locator;
 
 interface Locator
 {

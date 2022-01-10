@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelCode\EventSouring\Commands\Handlers;
+namespace LaravelCode\EventSourcing\Commands\Handlers;
 
-use LaravelCode\EventSouring\Contracts\Command\ShouldStore;
-use LaravelCode\EventSouring\Models\Command;
+use LaravelCode\EventSourcing\Contracts\Command\ShouldStore;
+use LaravelCode\EventSourcing\Models\Command;
 
 class CommandActionHandler
 {

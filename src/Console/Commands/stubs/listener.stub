@@ -1,0 +1,39 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyFullCommand;
+use DummyFullEvent;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use LaravelCode\EventSourcing\Contracts\EventInterface;
+use LaravelCode\EventSourcing\Listeners\ApplyListener;
+
+class DummyClass
+{
+    use ApplyListener;
+
+    /**
+    * Set if the program is unable to guess the model class
+    */
+    // public $model = User::class;
+
+    /**
+     * Handle the event.
+     *
+     * @param DummyCommand $event
+     * @return void
+     */
+    public function handleCommand(DummyCommand $event)
+    {
+        $this->event(new DummyEvent($event->getId()));
+    }
+
+    /**
+     * @param DummyEvent $event
+     */
+    public function applyDummyEvent(DummyEvent $event)
+    {
+       // TODO update this stub
+    }
+}

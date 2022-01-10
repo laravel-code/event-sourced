@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSouring;
+namespace LaravelCode\EventSourcing;
 
 interface Handler
 {

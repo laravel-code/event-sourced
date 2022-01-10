@@ -1,16 +1,16 @@
 <?php
 
-namespace LaravelCode\EventSouring\Listener;
+namespace LaravelCode\EventSourcing\Listener;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
-use LaravelCode\EventSouring\Contracts\Event\Event;
-use LaravelCode\EventSouring\Contracts\Listener\Listener;
-use LaravelCode\EventSouring\Contracts\Locator\Locator;
-use LaravelCode\EventSouring\Events\AfterEventWasApplied;
-use LaravelCode\EventSouring\Events\BeforeEventIsApplied;
-use LaravelCode\EventSouring\Events\EntityWasSet;
-use LaravelCode\EventSouring\Inflector\Inflector;
+use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Contracts\Listener\Listener;
+use LaravelCode\EventSourcing\Contracts\Locator\Locator;
+use LaravelCode\EventSourcing\Events\AfterEventWasApplied;
+use LaravelCode\EventSourcing\Events\BeforeEventIsApplied;
+use LaravelCode\EventSourcing\Events\EntityWasSet;
+use LaravelCode\EventSourcing\Inflector\Inflector;
 
 class EventListener implements Listener
 {

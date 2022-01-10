@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelCode\EventSouring\Models\Listeners;
+namespace LaravelCode\EventSourcing\Models\Listeners;
 
-use LaravelCode\EventSouring\Contracts\Event\ShouldStore;
-use LaravelCode\EventSouring\Models\Event;
+use LaravelCode\EventSourcing\Contracts\Event\ShouldStore;
+use LaravelCode\EventSourcing\Models\Event;
 
 class StoreEventListener
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests;
+namespace Integration;
 
-use LaravelCode\EventSouring\Error\PayloadException;
-use LaravelCode\EventSouring\Payload;
+use LaravelCode\EventSourcing\Error\PayloadException;
+use LaravelCode\EventSourcing\Payload;
 
 class PayloadTest extends \PHPUnit\Framework\TestCase
 {

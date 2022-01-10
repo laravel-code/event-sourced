@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSouring\Error;
+namespace LaravelCode\EventSourcing\Error;
 
 class MethodNotImplemented extends \Exception
 {

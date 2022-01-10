@@ -22,6 +22,14 @@ class Events extends Migration
             $table->timestamps();
         });
 
+        Schema::create('command_errors', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('command_id')->index();
+            $table->string('class');
+            $table->longText('message');
+            $table->timestamps();
+        });
+
         Schema::create('events', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('entity_id');
@@ -42,6 +50,7 @@ class Events extends Migration
     public function down()
     {
         Schema::dropIfExists('events');
+        Schema::dropIfExists('commands_errors');
         Schema::dropIfExists('commands');
     }
 }

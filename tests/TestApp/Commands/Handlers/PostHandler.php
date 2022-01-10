@@ -37,10 +37,10 @@ class PostHandler
     }
 
     /**
-     * @throws \LaravelCode\EventSouring\Error\StopPropagation
+     * @throws \LaravelCode\EventSourcing\Error\StopPropagation
      */
     public function handleStopPropagation(StopPropagation $command): void
     {
-        throw new \LaravelCode\EventSouring\Error\StopPropagation();
+        throw new \LaravelCode\EventSourcing\Error\StopPropagation();
     }
 }

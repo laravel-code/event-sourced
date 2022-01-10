@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelCode\EventSouring\Helpers;
+namespace LaravelCode\EventSourcing\Helpers;
 
 use Illuminate\Support\Str;
-use LaravelCode\EventSouring\Error\ParamTypeException;
+use LaravelCode\EventSourcing\Error\ParamTypeException;
 use ReflectionParameter;
 use ReflectionProperty;
 

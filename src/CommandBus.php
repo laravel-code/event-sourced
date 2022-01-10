@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelCode\EventSouring;
+namespace LaravelCode\EventSourcing;
 
 use Illuminate\Support\Facades\Event;
-use LaravelCode\EventSouring\Error\StopPropagation;
+use LaravelCode\EventSourcing\Error\StopPropagation;
 
 class CommandBus
 {

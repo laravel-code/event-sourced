@@ -5,7 +5,7 @@ namespace TestApp\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use LaravelCode\EventSouring\Http\Controller\HandleCommand;
+use LaravelCode\EventSourcing\Http\Controller\HandleCommand;
 use TestApp\Commands\Posts\Change;
 use TestApp\Commands\Posts\Create;
 use TestApp\Commands\Posts\NoHandle;

@@ -1,9 +1,10 @@
 <?php
 
-namespace LaravelCode\EventSouring\Events;
+namespace LaravelCode\EventSourcing\Events;
 
-use LaravelCode\EventSouring\Helpers\FromPayloadTrait;
-use LaravelCode\EventSouring\Helpers\JsonSerializeTrait;
+use Carbon\Carbon;
+use LaravelCode\EventSourcing\Helpers\FromPayloadTrait;
+use LaravelCode\EventSourcing\Helpers\JsonSerializeTrait;
 
 /**
  * @property string|null $id;
@@ -17,6 +18,8 @@ trait Storable
     public string|null $commandId = null;
     public string|int|null $authorId = null;
     public bool $beingReplayed = false;
+    private Carbon|null $createdAt = null;
+    private Carbon|null $updatedAt = null;
 
     public function getId(): string|int
     {
@@ -95,5 +98,21 @@ trait Storable
     public function setBeingReplayed(bool $value): void
     {
         $this->beingReplayed = $value;
+    }
+
+    /**
+     * @param Carbon $date
+     */
+    public function setCreatedAt(Carbon $date): void
+    {
+        $this->createdAt = $date;
+    }
+
+    /**
+     * @param Carbon $date
+     */
+    public function setUpdatedAt(Carbon $date): void
+    {
+        $this->updatedAt = $date;
     }
 }
