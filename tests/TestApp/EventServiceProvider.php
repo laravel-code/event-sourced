@@ -19,6 +19,9 @@ use TestApp\Events\Posts\AbstractEvent;
 
 class EventServiceProvider extends ServiceProvider
 {
+    /**
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function boot()
     {
         parent::boot();

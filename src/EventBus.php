@@ -3,6 +3,7 @@
 namespace LaravelCode\EventSourcing;
 
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
 use LaravelCode\EventSourcing\Error\StopPropagation;
 
 class EventBus
@@ -22,6 +23,8 @@ class EventBus
                 try {
                     $bus->handle($eventName, $events);
                 } catch (StopPropagation) {
+                    Log::notice('Propagation of events was stopped');
+
                     return;
                 }
             }
