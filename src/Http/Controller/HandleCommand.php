@@ -91,7 +91,7 @@ trait HandleCommand
 
         Event::listen(AfterCommandWasHandled::class, function () use ($opts, $command) {
             $data = null;
-            if ($this->entity) {
+            if (isset($this->entity)) {
                 $data = $this->extractFromEntity($this->entity->toArray(), $opts['entity']);
             }
 
