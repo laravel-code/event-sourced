@@ -1,9 +1,9 @@
 <?php
 namespace DummyNamespace;
 
-use LaravelCode\EventSouring\Commands\Storable;
-use LaravelCode\EventSouring\Contracts\Command\Command;
-use LaravelCode\EventSouring\Contracts\Command\ShouldStore;
+use LaravelCode\EventSourcing\Commands\Storable;
+use LaravelCode\EventSourcing\Contracts\Command\Command;
+use LaravelCode\EventSourcing\Contracts\Command\ShouldStore;
 
 class DummyClass implements Command, \JsonSerializable, ShouldStore
 {
