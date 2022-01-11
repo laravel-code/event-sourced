@@ -15,6 +15,8 @@ trait EventRecorder
 {
     private array $_eventStack = [];
 
+    private int $_version;
+
     /**
      * @throws MethodNotImplemented
      * @throws \ReflectionException
@@ -28,7 +30,13 @@ trait EventRecorder
             throw new MethodNotImplemented();
         }
 
-        $event->setVersion($this->version ? $this->version + 1 : 1);
+        if (!isset($this->_version)) {
+            $this->_version = $this->version ?: 0;
+        }
+
+        $this->_version++;
+
+        $event->setVersion($this->_version);
 
         call_user_func([$this, $method], $event);
 
