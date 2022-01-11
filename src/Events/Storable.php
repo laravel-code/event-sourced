@@ -21,9 +21,21 @@ trait Storable
     private Carbon|null $createdAt = null;
     private Carbon|null $updatedAt = null;
 
+    /**
+     * @return string|int
+     */
     public function getId(): string|int
     {
         return $this->id;
+    }
+
+    /**
+     * @param string|int $id
+     * @return void
+     */
+    public function setId(string|int $id): void
+    {
+        $this->id = $id;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace LaravelCode\EventSourcing\Events\Listener;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 use LaravelCode\EventSourcing\Contracts\Event\Event;
 use LaravelCode\EventSourcing\Error\EventVersionException;
 use LaravelCode\EventSourcing\Inflector\ApplyClassNameInflector;
@@ -25,6 +26,12 @@ abstract class ApplyListener
 
         $entity->version = $event->getVersion();
         $entity->saveOrFail();
+
+        if (isset($entity->id) && !isset($event->id)) {
+            Log::debug(sprintf('Entity id %s set for event %s', $entity->id, get_class($event)));
+
+            $event->setId($entity->id);
+        }
 
         return $entity;
     }

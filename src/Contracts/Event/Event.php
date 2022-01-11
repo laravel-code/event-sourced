@@ -80,4 +80,10 @@ interface Event
      * @return void
      */
     public function setBeingReplayed(bool $value): void;
+
+    /**
+     * @param int|string $id
+     * @return void
+     */
+    public function setId(int|string $id): void;
 }

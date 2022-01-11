@@ -56,18 +56,18 @@ trait SearchBehaviourTrait
      */
     private function parseInclude($includes)
     {
-        if (! $includes) {
+        if (!$includes) {
             return;
         }
 
-        if ($includes && ! isset($this->includes)) {
+        if ($includes && !isset($this->includes)) {
             return explode(',', $includes);
         }
 
         $list = explode(',', $includes);
         foreach ($list as $key => $item) {
-            if (! in_array($item, $this->includes)) {
-                throw new \InvalidArgumentException('Include `'.$item.'` is not configured on the model');
+            if (!in_array($item, $this->includes)) {
+                throw new \InvalidArgumentException('Include `' . $item . '` is not configured on the model');
             }
         }
         if (count($list)) {
@@ -82,7 +82,7 @@ trait SearchBehaviourTrait
      */
     private function runSearch(Builder $query, array $params): Builder
     {
-        if (! method_exists($this, 'search')) {
+        if (!method_exists($this, 'search')) {
             return $query;
         }
 
@@ -92,7 +92,7 @@ trait SearchBehaviourTrait
                 continue;
             }
 
-            if (! isset($params[$key])) {
+            if (!isset($params[$key])) {
                 continue;
             }
 
@@ -127,11 +127,11 @@ trait SearchBehaviourTrait
      */
     private function runSort(Builder $query, string $column = null, string $orderDir = null): Builder
     {
-        if (! isset($this->orderFields) || ! $column) {
+        if (!isset($this->orderFields) || !$column) {
             return $query;
         }
 
-        if (! in_array($orderDir, ['asc', 'desc'])) {
+        if (!in_array($orderDir, ['asc', 'desc'])) {
             $orderDir = 'asc';
         }
 

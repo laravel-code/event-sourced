@@ -1,7 +1,7 @@
 <?php
 namespace DummyNamespace;
 
-use LaravelCode\EventSourcing\Commands\Storable;
+use LaravelCode\EventSourcing\Events\Storable;
 use LaravelCode\EventSourcing\Contracts\Event\Event;
 use LaravelCode\EventSourcing\Contracts\Event\ShouldStore;
 

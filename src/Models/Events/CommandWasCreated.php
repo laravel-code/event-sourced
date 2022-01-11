@@ -13,7 +13,7 @@ class CommandWasCreated implements Event
     /**
      * @var string|int
      */
-    public string|int $id;
+    public $id;
     /**
      * @var string
      */
