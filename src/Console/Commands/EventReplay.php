@@ -58,7 +58,7 @@ class EventReplay extends Command
                     if ($this->option('status')) {
                         $query->where('status', $this->option('status'));
                     } else {
-                        $query->where('status', 'handled');
+                        $query->where('status', \LaravelCode\EventSourcing\Models\Command::STATUS_SUCCEEDED);
                     }
                 });
             })

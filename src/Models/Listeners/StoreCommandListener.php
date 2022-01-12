@@ -37,10 +37,11 @@ class StoreCommandListener
 
         /** @var Command $entity */
         $entity = Command::find($event->id);
+
         if ($entity->status !== $event->status) {
             $entity->status = $event->status;
         }
 
-        $entity->saveQuietly();
+        $entity->save();
     }
 }
