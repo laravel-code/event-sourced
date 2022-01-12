@@ -1,0 +1,23 @@
+<?php
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Events\Listener\ApplyListener;
+
+class DummyClass extends ApplyListener {
+
+    public function getEntity(Event $event): Model
+    {
+        if (!isset($event->id)) {
+            // return new User();
+        }
+
+        try {
+            // return (new User())->findOrFail($event->id);
+        } catch (ModelNotFoundException) {
+            // return new User();
+        }
+    }
+}
