@@ -57,7 +57,13 @@ trait HandleCommand
             $idParamName = $opts['idParamName'];
         }
 
+        /** @var Command $command */
         $command = call_user_func([$className, 'fromPayload'], Payload::fromRequest($request, $idParamName));
+
+        $user = $request->user();
+        if (null !== $user) {
+            $command->setAuthorId($user->id);
+        }
 
         $this->setupListeners($command, $opts);
         dispatch($command);
