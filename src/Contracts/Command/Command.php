@@ -31,5 +31,5 @@ interface Command
     /**
      * @throws \ReflectionException
      */
-    public static function fromPayload(Payload $payload): object;
+    public static function fromPayload(Payload $payload): self;
 }
