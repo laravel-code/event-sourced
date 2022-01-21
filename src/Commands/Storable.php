@@ -16,6 +16,7 @@ trait Storable
 
     public string|null $commandId = null;
     public string|int|null $authorId = null;
+    public string $_model;
 
     /**
      * @param string $id
@@ -47,6 +48,22 @@ trait Storable
     public function setAuthorId(int|string|null $authorId): void
     {
         $this->authorId = $authorId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModel(): string
+    {
+        return $this->_model;
+    }
+
+    /**
+     * @param string $model
+     */
+    public function setModel(string $model): void
+    {
+        $this->_model = $model;
     }
 
     /**

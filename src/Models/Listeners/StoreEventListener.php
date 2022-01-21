@@ -11,6 +11,7 @@ class StoreEventListener
     {
         $entity = new Event();
         $entity->id = $event->getEventId();
+        $entity->model = $event->getModel();
         $entity->command_id = $event->getCommandId();
         $entity->author_id = $event->getAuthorId();
         $entity->entity_id = $event->id;

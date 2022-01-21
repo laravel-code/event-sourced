@@ -24,6 +24,7 @@ trait HandleCommand
         'createUUID' => null,
         'entity' => null,
         'idParamName' => null,
+        'model' => null,
     ];
 
     /**
@@ -35,6 +36,7 @@ trait HandleCommand
      * $opts = [
      *   'entity' => ['id'],
      *   'idParamName' => 'dummy'
+     *   'model' => 'User'
      * ]
      *
      *
@@ -63,6 +65,11 @@ trait HandleCommand
         $user = $request->user();
         if (null !== $user) {
             $command->setAuthorId($user->id);
+        }
+
+        $model = $this->getModel();
+        if ($model) {
+            $command->setModel($model);
         }
 
         $this->setupListeners($command, $opts);
@@ -183,5 +190,13 @@ trait HandleCommand
         $name = $reflection->getShortName();
 
         return Str::camel(Str::singular(substr($name, 0, -10)));
+    }
+
+    private function getModel(): string
+    {
+        $list = explode('\\', get_class($this));
+        $class = str_replace('Controller', '', last($list));
+
+        return Str::singular($class);
     }
 }

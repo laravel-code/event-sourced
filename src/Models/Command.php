@@ -13,6 +13,7 @@ use LaravelCode\EventSourcing\Models\Events\CommandWasCreated;
  *
  * @property string $id
  * @property string|null $author_id
+ * @property string $model
  * @property string $status
  * @property CommandInterface $payload
  * @property string $type
@@ -44,11 +45,12 @@ final class Command extends Model
         'payload' => 'json',
     ];
 
-    public static function instance(string $id, string $type, ShouldStore $payload, string $status, string $author = null): self
+    public static function instance(string $id, string $model, string $type, ShouldStore $payload, string $status, string $author = null): self
     {
         $entity = new static();
         $entity->record(new CommandWasCreated(
             $id,
+            $model,
             $type,
             $payload,
             $status,
@@ -61,6 +63,7 @@ final class Command extends Model
     public function applyCommandWasCreated(CommandWasCreated $event): void
     {
         $this->id = $event->id;
+        $this->model = $event->model;
         $this->type = $event->type;
         $this->payload = $event->payload;
         $this->status = $event->status;

@@ -24,6 +24,16 @@ interface Command
     public function setAuthorId(int|string|null $authorId): void;
 
     /**
+     * @return string
+     */
+    public function getModel(): string;
+
+    /**
+     * @param string $authorId
+     */
+    public function setModel(string $authorId): void;
+
+    /**
      * @return array
      */
     public function jsonSerialize(): array;

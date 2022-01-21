@@ -15,6 +15,7 @@ class Events extends Migration
     {
         Schema::create('commands', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('model')->nullable();
             $table->string('type');
             $table->json('payload');
             $table->string('status');
@@ -33,6 +34,7 @@ class Events extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('entity_id');
+            $table->string('model')->nullable();
             $table->string('type');
             $table->json('payload');
             $table->integer('version')->default(0);

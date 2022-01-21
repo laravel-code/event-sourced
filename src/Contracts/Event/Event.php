@@ -61,6 +61,16 @@ interface Event
     public function setAuthorId(int|string|null $authorId): void;
 
     /**
+     * @return string
+     */
+    public function getModel(): string;
+
+    /**
+     * @param string $model
+     */
+    public function setModel(string $model): void;
+
+    /**
      * @return array
      */
     public function jsonSerialize(): array;

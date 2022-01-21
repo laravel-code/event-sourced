@@ -17,6 +17,7 @@ trait Storable
     public string|null $eventId = null;
     public string|null $commandId = null;
     public string|int|null $authorId = null;
+    public string $_model;
     public bool $beingReplayed = false;
     private Carbon|null $createdAt = null;
     private Carbon|null $updatedAt = null;
@@ -100,6 +101,22 @@ trait Storable
     public function setAuthorId(int|string|null $authorId): void
     {
         $this->authorId = $authorId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModel(): string
+    {
+        return $this->_model;
+    }
+
+    /**
+     * @param string $model
+     */
+    public function setModel(string $model): void
+    {
+        $this->_model = $model;
     }
 
     public function isBeingReplayed(): bool

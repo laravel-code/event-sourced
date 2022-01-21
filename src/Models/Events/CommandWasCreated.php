@@ -17,6 +17,10 @@ class CommandWasCreated implements Event
     /**
      * @var string
      */
+    public string $model;
+    /**
+     * @var string
+     */
     public string $type;
     /**
      * @var ShouldStore
@@ -38,12 +42,13 @@ class CommandWasCreated implements Event
      * @param string $status
      * @param string|null $author
      */
-    public function __construct(string $id, string $type, ShouldStore $payload, string $status, ?string $author)
+    public function __construct(string $id, string $model, string $type, ShouldStore $payload, string $status, ?string $author)
     {
         $this->id = $id;
         $this->type = $type;
         $this->payload = $payload;
         $this->status = $status;
         $this->author = $author;
+        $this->model = $model;
     }
 }

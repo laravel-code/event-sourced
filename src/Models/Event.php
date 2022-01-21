@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * LaravelCode\EventSourcing\Models\Event.
  *
  * @property string $id
+ * @property string $model
  * @property string $entity_id
  * @property string|null $command_id
  * @property string|null $author_id

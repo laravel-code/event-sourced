@@ -19,7 +19,7 @@ class PostHandler
             $command->getSecretKey(),
         );
 
-        $post->publishEvents($command->getCommandId());
+        $post->publishEvents($command->getModel(), $command->getCommandId());
     }
 
     public function handleChange(Change $command): void
@@ -33,7 +33,7 @@ class PostHandler
             $command->status
         );
 
-        $post->publishEvents($command->getCommandId());
+        $post->publishEvents($command->getModel(), $command->getCommandId());
     }
 
     /**

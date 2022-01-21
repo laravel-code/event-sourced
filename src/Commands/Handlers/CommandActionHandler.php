@@ -11,6 +11,7 @@ class CommandActionHandler
     {
         $entity = Command::instance(
             $command->getCommandId(),
+            $command->getModel(),
             get_class($command),
             $command,
             Command::STATUS_RECEIVED,

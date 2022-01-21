@@ -48,13 +48,14 @@ trait EventRecorder
         return $this->_eventStack;
     }
 
-    public function publishEvents(?string $commandId = null, ?string $authorId = null): void
+    public function publishEvents(string $model, ?string $commandId = null, ?string $authorId = null): void
     {
         foreach ($this->getUnpublishedEvents() as $event) {
             if ($event instanceof Event) {
                 $event->setEventId(Str::uuid());
                 $event->setCommandId($commandId ?? null);
                 $event->setAuthorId($authorId ?? null);
+                $event->setModel($model);
             }
             event($event);
         }
