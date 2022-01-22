@@ -55,10 +55,10 @@ trait UseSearchBehavior
     }
 
     /**
-     * @param string $includes
+     * @param string|null $includes
      * @return array|null
      */
-    private function parseInclude(string $includes): array|null
+    private function parseInclude(string $includes = null): array|null
     {
         if (empty($includes)) {
             return null;

@@ -46,6 +46,17 @@ final class Command extends Model
         'payload' => 'json',
     ];
 
+    protected array $includes = [
+        'error',
+        'event',
+    ];
+
+    protected array $orderFields = [
+        'type',
+        'created_at',
+        'updated_at',
+    ];
+
     public static function instance(string $id, string $model, string $type, ShouldStore $payload, string $status, string $author = null): self
     {
         $entity = new static();
@@ -69,5 +80,15 @@ final class Command extends Model
         $this->payload = $event->payload;
         $this->status = $event->status;
         $this->author_id = $event->author;
+    }
+
+    public function error(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CommandError::class);
+    }
+
+    public function events(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Event::class);
     }
 }

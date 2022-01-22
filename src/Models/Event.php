@@ -52,8 +52,8 @@ class Event extends Model
     ];
 
     protected array $orderFields = [
-        'revision_number',
-        'model',
+        'version',
+        'type',
         'created_at',
         'updated_at',
     ];
