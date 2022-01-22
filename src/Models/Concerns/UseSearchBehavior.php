@@ -1,20 +1,24 @@
 <?php
 
-namespace LaravelCode\EventSourcing\Models;
+namespace LaravelCode\EventSourcing\Models\Concerns;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-trait SearchBehaviourTrait
+/**
+ * @method array search()
+ */
+trait UseSearchBehavior
 {
     /**
      * @param Builder $query
      * @param Request $request
-     * @param $withQuery
+     * @param callable|null $callable
+     * @return LengthAwarePaginator
      */
-    public function scopePaginatedResources(Builder $query, Request $request, $withQuery = null): LengthAwarePaginator
+    public function scopePaginatedResources(Builder $query, Request $request, callable $callable = null): LengthAwarePaginator
     {
         $this->runIncludes($query, $request->get('include', null));
         $this->runSearch($query, $request->all());
@@ -28,8 +32,8 @@ trait SearchBehaviourTrait
         if ($perPage > 100) {
             $perPage = $this->getPerPage();
         }
-        if ($withQuery) {
-            return $query->tap($withQuery)->paginate($perPage);
+        if ($callable) {
+            return $query->tap($callable)->paginate($perPage);
         }
 
         return $query->paginate($perPage);
@@ -51,28 +55,31 @@ trait SearchBehaviourTrait
     }
 
     /**
-     * @param $includes
-     * @return array|void
+     * @param string $includes
+     * @return array|null
      */
-    private function parseInclude($includes)
+    private function parseInclude(string $includes): array|null
     {
-        if (!$includes) {
-            return;
+        if (empty($includes)) {
+            return null;
         }
 
-        if ($includes && !isset($this->includes)) {
+        if (!isset($this->includes)) {
             return explode(',', $includes);
         }
 
+        /** @var array $list */
         $list = explode(',', $includes);
         foreach ($list as $key => $item) {
             if (!in_array($item, $this->includes)) {
                 throw new \InvalidArgumentException('Include `' . $item . '` is not configured on the model');
             }
         }
-        if (count($list)) {
-            return $list;
+        if (count($list) === 0) {
+            return null;
         }
+
+        return $list;
     }
 
     /**
@@ -148,10 +155,10 @@ trait SearchBehaviourTrait
      * @param Builder $query
      * @param int|string $modelId
      * @param Request $request
-     * @param $withQuery
-     * @return Builder
+     * @param callable|null $withQuery
+     * @return Model
      */
-    public function scopeResource(Builder $query, $modelId, Request $request, $withQuery = null): Model
+    public function scopeResource(Builder $query, string|int $modelId, Request $request, callable $withQuery = null): Model
     {
         if ($withQuery && is_callable($withQuery)) {
             $withQuery($query);

@@ -7,6 +7,7 @@ namespace LaravelCode\EventSourcing\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use LaravelCode\EventSourcing\Models\Concerns\UseSearchBehavior;
 
 /**
  * LaravelCode\EventSourcing\Models\Event.
@@ -38,6 +39,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Event extends Model
 {
+    use UseSearchBehavior;
+
     protected $casts = [
         'id' => 'string',
         'payload' => 'json',

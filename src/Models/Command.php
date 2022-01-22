@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use LaravelCode\EventSourcing\Contracts\Command\Command as CommandInterface;
 use LaravelCode\EventSourcing\Contracts\Command\ShouldStore;
 use LaravelCode\EventSourcing\Events\EventRecorder;
+use LaravelCode\EventSourcing\Models\Concerns\UseSearchBehavior;
 use LaravelCode\EventSourcing\Models\Events\CommandWasCreated;
 
 /**
@@ -33,7 +34,7 @@ use LaravelCode\EventSourcing\Models\Events\CommandWasCreated;
  */
 final class Command extends Model
 {
-    use EventRecorder;
+    use EventRecorder, UseSearchBehavior;
 
     const STATUS_RECEIVED = 'received';
     const STATUS_HANDLED = 'handled';
