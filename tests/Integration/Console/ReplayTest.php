@@ -37,6 +37,7 @@ class ReplayTest extends TestCase
 
         $command = new Create('Title', 'body string', 'new', 'some secret key');
         $command->setCommandId(Str::uuid());
+        $command->setModel('Post');
         dispatch($command);
 
         $this->assertEquals(1, Post::count(), 'Unexpected count for table posts]');
@@ -44,6 +45,7 @@ class ReplayTest extends TestCase
 
         $command = new Change($id, 'Updated title', 'Updated body', 'active');
         $command->setCommandId(Str::uuid());
+        $command->setModel('Post');
         dispatch($command);
 
         $this->assertEquals(4, Event::count(), 'Unexpected count for table events');

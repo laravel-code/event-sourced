@@ -76,6 +76,7 @@ class EventReplay extends Command
                             $replayEvent->setVersion($event->version);
                             $replayEvent->setCreatedAt($event->created_at);
                             $replayEvent->setUpdatedAt($event->updated_at);
+                            $replayEvent->setModel($event->model);
                             event($replayEvent);
                         }
                     } catch (\Exception $exception) {

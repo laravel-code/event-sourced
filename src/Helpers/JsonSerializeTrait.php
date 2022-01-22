@@ -34,7 +34,7 @@ trait JsonSerializeTrait
          */
         $properties = collect($reflection->getProperties())
             ->filter(function (ReflectionProperty $property) {
-                return $property->isPublic();
+                return $property->isPublic() && isset($this->{$property->getName()});
             })->map(function (ReflectionProperty $property) {
                 return Str::snake($property->getName());
             });
