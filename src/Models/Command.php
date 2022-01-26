@@ -5,9 +5,9 @@ namespace LaravelCode\EventSourcing\Models;
 use Illuminate\Database\Eloquent\Model;
 use LaravelCode\EventSourcing\Contracts\Command\Command as CommandInterface;
 use LaravelCode\EventSourcing\Contracts\Command\ShouldStore;
+use LaravelCode\EventSourcing\Events\Command\CommandWasCreated;
 use LaravelCode\EventSourcing\Events\EventRecorder;
-use LaravelCode\EventSourcing\Models\Concerns\UseSearchBehavior;
-use LaravelCode\EventSourcing\Models\Events\CommandWasCreated;
+use LaravelCode\EventSourcing\Models\Concerns\HasSearchBehavior;
 
 /**
  * LaravelCode\EventSourcing\Models\Command.
@@ -34,7 +34,7 @@ use LaravelCode\EventSourcing\Models\Events\CommandWasCreated;
  */
 final class Command extends Model
 {
-    use EventRecorder, UseSearchBehavior;
+    use EventRecorder, HasSearchBehavior;
 
     const STATUS_RECEIVED = 'received';
     const STATUS_HANDLED = 'handled';

@@ -5,6 +5,7 @@ namespace TestApp\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use LaravelCode\EventSourcing\Events\EventRecorder;
+use LaravelCode\EventSourcing\Models\Concerns\HasSearchBehavior;
 use TestApp\Events\Posts\BodyWasChanged;
 use TestApp\Events\Posts\StatusWasChanged;
 use TestApp\Events\Posts\TitleWasChanged;
@@ -20,7 +21,7 @@ use TestApp\Models\Concerns\UsesUuid;
  */
 final class Post extends Model
 {
-    use EventRecorder, UsesUuid;
+    use EventRecorder, UsesUuid, HasSearchBehavior;
 
     /**
      * @throws \LaravelCode\EventSourcing\Error\MethodNotImplemented

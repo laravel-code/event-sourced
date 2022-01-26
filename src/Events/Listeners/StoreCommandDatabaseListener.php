@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelCode\EventSourcing\Models\Listeners;
+namespace LaravelCode\EventSourcing\Events\Listeners;
 
 use LaravelCode\EventSourcing\Events\AfterCommandWasHandled;
+use LaravelCode\EventSourcing\Events\Command\CommandStatusWasChanged;
+use LaravelCode\EventSourcing\Events\Command\CommandWasCreated;
 use LaravelCode\EventSourcing\Models\Command;
-use LaravelCode\EventSourcing\Models\Events\CommandStatusWasChanged;
-use LaravelCode\EventSourcing\Models\Events\CommandWasCreated;
 
-class StoreCommandListener
+class StoreCommandDatabaseListener
 {
     public function applyCommandWasCreated(CommandWasCreated $event): void
     {

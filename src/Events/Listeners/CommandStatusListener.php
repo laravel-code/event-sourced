@@ -1,14 +1,13 @@
 <?php
 
-namespace LaravelCode\EventSourcing\Listener;
+namespace LaravelCode\EventSourcing\Events\Listeners;
 
 use Illuminate\Support\Facades\Log;
 use LaravelCode\EventSourcing\Contracts\Event\Event;
+use LaravelCode\EventSourcing\Events\Command\CommandStatusWasChanged;
 use LaravelCode\EventSourcing\Handler;
 use LaravelCode\EventSourcing\Inflector\ApplyClassNameInflector;
 use LaravelCode\EventSourcing\Locator\InMemoryLocator;
-use LaravelCode\EventSourcing\Models\Events\CommandStatusWasChanged;
-use LaravelCode\EventSourcing\Models\Listeners\StoreCommandListener;
 
 class CommandStatusListener extends EventListener implements Handler
 {
@@ -30,7 +29,7 @@ class CommandStatusListener extends EventListener implements Handler
             return;
         }
 
-        $handler = new StoreCommandListener();
+        $handler = new StoreCommandDatabaseListener();
         $name = $this->inflector->execute(CommandStatusWasChanged::class);
 
         if (!is_callable([$handler, $name])) {

@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelCode\EventSourcing\Models\Listeners;
+namespace LaravelCode\EventSourcing\Events\Listeners;
 
 use LaravelCode\EventSourcing\Contracts\Event\ShouldStore;
 use LaravelCode\EventSourcing\Models\Event;
 
-class StoreEventListener
+class StoreEventDatabaseListener
 {
     public function apply(ShouldStore $event): void
     {

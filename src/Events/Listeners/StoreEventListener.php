@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSourcing\Listener;
+namespace LaravelCode\EventSourcing\Events\Listeners;
 
 use Illuminate\Support\Facades\Log;
 use LaravelCode\EventSourcing\Contracts\Event\ShouldStore;
@@ -12,7 +12,7 @@ class StoreEventListener extends EventListener implements Handler
 {
     public function __construct()
     {
-        $listener = new \LaravelCode\EventSourcing\Models\Listeners\StoreEventListener();
+        $listener = new StoreEventDatabaseListener();
         $locations = ['*' => $listener];
         $locator = new InMemoryLocator($locations);
 

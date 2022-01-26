@@ -5,7 +5,7 @@ namespace TestApp\Events\Listeners;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use LaravelCode\EventSourcing\Contracts\Event\Event;
-use LaravelCode\EventSourcing\Events\Listener\ApplyListener;
+use LaravelCode\EventSourcing\Events\Listeners\ApplyListener;
 use TestApp\Models\Post;
 
 class PostListener extends ApplyListener

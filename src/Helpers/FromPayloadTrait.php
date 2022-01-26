@@ -19,7 +19,7 @@ trait FromPayloadTrait
         $data = [];
         foreach ($reflection->getMethod('__construct')->getParameters() as $param) {
             assert($param instanceof ReflectionParameter);
-            $value = $payload->get(Str::snake($param->getName()));
+            $value = $payload->get(Str::snake($param->getName()), $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null);
 
             $type = $param->getType();
             assert($type instanceof \ReflectionNamedType);

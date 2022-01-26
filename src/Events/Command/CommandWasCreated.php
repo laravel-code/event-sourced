@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSourcing\Models\Events;
+namespace LaravelCode\EventSourcing\Events\Command;
 
 use LaravelCode\EventSourcing\Contracts\Command\ShouldStore;
 use LaravelCode\EventSourcing\Contracts\Event\Event;

@@ -7,7 +7,7 @@ namespace LaravelCode\EventSourcing\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use LaravelCode\EventSourcing\Models\Concerns\UseSearchBehavior;
+use LaravelCode\EventSourcing\Models\Concerns\HasSearchBehavior;
 
 /**
  * LaravelCode\EventSourcing\Models\Event.
@@ -39,7 +39,7 @@ use LaravelCode\EventSourcing\Models\Concerns\UseSearchBehavior;
  */
 class Event extends Model
 {
-    use UseSearchBehavior;
+    use HasSearchBehavior;
 
     protected $casts = [
         'id' => 'string',

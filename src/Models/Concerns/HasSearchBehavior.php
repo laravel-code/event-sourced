@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 /**
  * @method array search()
  */
-trait UseSearchBehavior
+trait HasSearchBehavior
 {
     /**
      * @param Builder $query

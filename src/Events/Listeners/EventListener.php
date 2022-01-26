@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCode\EventSourcing\Listener;
+namespace LaravelCode\EventSourcing\Events\Listeners;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
