@@ -2,6 +2,7 @@
 
 namespace LaravelCode\EventSourcing\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use LaravelCode\EventSourcing\Contracts\Command\Command as CommandInterface;
 use LaravelCode\EventSourcing\Contracts\Command\ShouldStore;
@@ -56,6 +57,18 @@ final class Command extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected function search()
+    {
+        return [
+            'entity_id' => function (Builder $query, $value) {
+                $query->whereHas('events', function ($query) use ($value) {
+                    $query->where('entity_id', $value);
+                });
+            },
+            'model',
+        ];
+    }
 
     public static function instance(string $id, string $model, string $type, ShouldStore $payload, string $status, string $author = null): self
     {

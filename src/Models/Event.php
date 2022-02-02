@@ -62,7 +62,7 @@ class Event extends Model
     {
         return [
             'id',
-            'resource_id',
+            'entity_id',
             'type' => function (Builder $query, $value) {
                 if (class_exists($value)) {
                     return $query->where('class', $value);
