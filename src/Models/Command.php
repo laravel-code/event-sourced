@@ -58,7 +58,7 @@ final class Command extends Model
         'updated_at',
     ];
 
-    protected function search()
+    protected function search(): array
     {
         return [
             'entity_id' => function (Builder $query, $value) {
