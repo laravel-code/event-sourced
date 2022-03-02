@@ -64,11 +64,7 @@ class Event extends Model
             'id',
             'entity_id',
             'type' => function (Builder $query, $value) {
-                if (class_exists($value)) {
-                    return $query->where('class', $value);
-                }
-
-                return $query->where('class', $value);
+                return $query->where('type', 'LIKE', '%'. $value . '%');
             },
             'command_id',
             'author_id',

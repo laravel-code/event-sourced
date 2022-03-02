@@ -9,9 +9,12 @@ use TestApp\Models\Post;
 
 class PostHandler
 {
+    /**
+     * @throws \ReflectionException
+     * @throws \LaravelCode\EventSourcing\Error\MethodNotImplemented
+     */
     public function handleCreate(Create $command): void
     {
-        /** @var Post $post */
         $post = Post::create(
             $command->title,
             $command->body,
